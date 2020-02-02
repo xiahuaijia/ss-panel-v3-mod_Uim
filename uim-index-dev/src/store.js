@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import UserTmp from './stores/UserStore'
+import NodeStore from './stores/NodeStore'
 
 Vue.use(Vuex)
 
@@ -42,7 +43,8 @@ export default new Vuex.Store({
         hitokoto: '',
         date: '',
         jinrishici: ''
-      }
+      },
+      paymentType: ''
     }
   },
   mutations: {
@@ -81,6 +83,7 @@ export default new Vuex.Store({
       state.globalConfig.enableLoginCaptcha = config.enable_logincaptcha
       state.globalConfig.enableRegCaptcha = config.enable_regcaptcha
       state.globalConfig.enableCheckinCaptcha = config.enable_checkin_captcha
+      state.globalConfig.enableFlag = config.enable_flag
       state.globalConfig.login_token = config.login_token
       state.globalConfig.login_number = config.login_number
       state.globalConfig.telegram_bot = config.telegram_bot
@@ -88,6 +91,7 @@ export default new Vuex.Store({
       state.globalConfig.enable_telegram = config.enable_telegram
       state.globalConfig.indexMsg.appname = config.appName
       state.globalConfig.indexMsg.date = config.dateY
+      state.globalConfig.paymentType = config.payment_type
     },
     SET_HITOKOTO (state, content) {
       state.globalConfig.indexMsg.hitokoto = content
@@ -133,6 +137,7 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    userState: UserTmp
+    userState: UserTmp,
+    nodeState: NodeStore
   }
 })
